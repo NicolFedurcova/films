@@ -6,10 +6,6 @@ import { UsersService } from 'src/services/users.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatTableModule } from '@angular/material/table';
-import { NgFor, NgIf } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { FilmDetail } from 'src/entities/filmDetail';
 
 @Component({
@@ -23,8 +19,6 @@ import { FilmDetail } from 'src/entities/filmDetail';
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
-  //standalone: true,
-  //imports: [MatTableModule, NgFor, MatButtonModule, NgIf, MatIconModule],
 })
 
 export class FilmDetailComponent implements OnInit, AfterViewInit {
@@ -43,7 +37,7 @@ export class FilmDetailComponent implements OnInit, AfterViewInit {
   constructor(
     private filmsService: FilmsService, 
     private usersService: UsersService){
-    this.filmsDataSource = new FilmsDataSource(filmsService);
+    this.filmsDataSource = new FilmsDataSource(filmsService, this);
   }
 
   ngOnInit(): void {
@@ -52,23 +46,22 @@ export class FilmDetailComponent implements OnInit, AfterViewInit {
       this.columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand']
     }
 
-    //this.filmsService.getFilms().subscribe(
-    this.filmsService.getFilms(undefined,undefined,undefined,undefined,undefined, true).subscribe(  //ked tu toto nebolo davalo mi len prvych 10
+    this.filmsService.getFilms().subscribe(
       {next: (resp) => {
         this.films = [...resp.items];     
       }, 
-      complete: () => this.fillDetails(this.filmsService),  
+      complete: () => this.fillDetails(this.films),  
       }) ;
   }
 
-  getDetailFromServer(film: Film, service: FilmsService): void{
-    service.getDetail(film.imdbID).subscribe(odv => {
+  getDetailFromServer(film: Film): void{
+    this.filmsService.getDetail(film.imdbID).subscribe(odv => {
       this.details= [...this.details, odv];
     });
   }
 
-  fillDetails(service: FilmsService){
-    this.films.forEach(film => this.getDetailFromServer(film,service));
+  fillDetails(filmy: Film[]){
+    filmy.forEach(film => this.getDetailFromServer(film));
   }
 
   getDetail(imdbID:string): FilmDetail | undefined {

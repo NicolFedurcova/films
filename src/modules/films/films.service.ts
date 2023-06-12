@@ -46,8 +46,9 @@ export class FilmsService {
     } | undefined = this.getHeader();
 
     if(isfirst){
-      indexFrom=0;
-      indexTo=123;
+
+      //indexFrom=0;
+      //indexTo=123;
     }
     
     if (orderBy || descending || indexFrom || indexTo || search) {

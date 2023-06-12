@@ -4,6 +4,7 @@ import { Observable, Subject, mergeAll, tap, switchMap, map, of } from 'rxjs';
 import { FilmsService } from 'src/modules/films/films.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { FilmDetailComponent } from './film-detail/film-detail.component';
 
 export class FilmsDataSource implements DataSource<Film> {
     futureObservables = new Subject<Observable<Query>>();
@@ -12,8 +13,8 @@ export class FilmsDataSource implements DataSource<Film> {
     descending?: boolean;
     search?: string; 
     pageSize = 10;
-  
-    constructor(private filmsService:FilmsService){}
+      
+    constructor(private filmsService:FilmsService, private filmDetail?:FilmDetailComponent){    }
   
     addEventsSources(paginator: MatPaginator, sort: MatSort, filter: Observable<string>){
       this.paginator = paginator;
@@ -50,7 +51,6 @@ export class FilmsDataSource implements DataSource<Film> {
     connect(): Observable<Film[]>{
       return this.futureObservables.pipe(
         mergeAll(),
-        tap(event => console.log("Event: ", event)),
         switchMap(query => this.filmsService.getFilms(query.orderby, 
                                                       query.descending, 
                                                       query.indexFrom, 
@@ -59,6 +59,8 @@ export class FilmsDataSource implements DataSource<Film> {
         map(response => {
           if (this.paginator)
             this.paginator.length = response.totalCount;
+          
+          this.filmDetail?.fillDetails(response.items);
           return response.items;
         })
       );

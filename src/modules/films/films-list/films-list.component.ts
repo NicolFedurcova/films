@@ -5,6 +5,7 @@ import { FilmsService } from '../films.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FilmsDataSource } from '../FilmsDataSource';
+import { FilmDetailComponent } from '../film-detail/film-detail.component';
 
 @Component({
   selector: 'app-films-list',
