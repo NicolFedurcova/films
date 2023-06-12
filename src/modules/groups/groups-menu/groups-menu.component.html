@@ -1,0 +1,8 @@
+<nav mat-tab-nav-bar mat-stretch-tabs="false" mat-align-tabs="start" [tabPanel]="tabPanel">
+    <a mat-tab-link routerLink= "/groups" routerLinkActive="active">List </a> <!--chcem ist na lomeno groups-->
+    <a mat-tab-link routerLink="/groups/detail/1" routerLinkActive="active">Detail</a>
+</nav>
+
+<mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+<!--kazdy modul si musi sam povedat ake moduly bude pouzivat -- groups module nepozna material moduly kt si naimportovaljeho rodic-->
+<router-outlet></router-outlet>

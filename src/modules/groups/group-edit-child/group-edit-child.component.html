@@ -1,0 +1,16 @@
+<h2> Editing group: {{group?.name}}</h2>
+
+<form *ngIf="group" #formModel="ngForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+        <mat-label>Grop name</mat-label>
+        <input matInput [(ngModel)]="name" name="groupname" required minlength="2">
+        <mat-error>group name  must have at least 2 charcters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Permissions</mat-label>
+        <input matInput [(ngModel)]="permString" name="perms">
+        <mat-error>group name  must have at least 2 chaarcters</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="accent" 
+            [disabled]="formModel.form.invalid">Save</button>
+</form>

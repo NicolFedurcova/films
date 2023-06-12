@@ -1,0 +1,19 @@
+<p>users works!</p>
+<ul>
+    <li *ngFor = "let user of users" (click)="onUserClick(user)">{{user}}</li>  <!-- odchytime klik a na vstup mu dame usera kt vznikol v let-->
+    <!-- <li>{{users[1]}}</li> -->
+</ul>
+<p> <!-- <p *ngIf = "activeUser"> == nebude existovat cely element p ak nebude existovat activeUser -->
+    Active user: {{activeUser}} <!--{{activeUser?.name}}  -->
+    <!-- ak chcem activeuser.name sa mu neapci lebo moze byt undefined -- pridam otaznik a bude ok -->
+    <!-- alebo mozem zobrazovat element len vtedy ak nie je undefined-->
+</p>
+
+<table mat-table [dataSource]="users">
+    <mat-text-column name="name" headerText="Name"></mat-text-column>
+    <mat-text-column name="email" headerText="E-mail"></mat-text-column>
+    <mat-text-column name="id" headerText="Id"></mat-text-column>
+    
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr> <!--v userscomponente zadefinovane columns to display-->
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+</table>

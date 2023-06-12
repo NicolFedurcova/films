@@ -1,0 +1,13 @@
+<h2>Group detail:</h2>
+<ul>
+    <li>Name: <strong>{{group?.name}}</strong></li>
+    <li>ID: <strong>{{group?.id}}</strong></li>
+    <li>Permissions: 
+        <ul>
+            <li *ngFor="let perm of group?.permissions">{{perm}}</li> <!--!!!!! pozor na medzeryyyyyy!!!!!!-->
+        </ul>
+    </li>
+</ul>
+
+<!-- je to element - viem mu nastavit nejake vlastnosti [] sa vyhodnoti ako premenna-->
+<app-group-edit-child [editingGroup]="group" (save)="onSave($event)"></app-group-edit-child>

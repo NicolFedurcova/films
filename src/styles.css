@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-toolbar .active>span {
+    color: #780943;
+}
+
+mat-snack-bar-container.sucessSnackBar .mat-mdc-button span.mdc-button__label {
+    color:rgb(137, 226, 4);
+}
+
+mat-snack-bar-container.errorSnackBar .mat-mdc-button span.mdc-button__label {
+    color:red;
+}

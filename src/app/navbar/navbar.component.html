@@ -1,0 +1,50 @@
+<mat-toolbar color="accent">
+  <!--<span>F</span>-->
+  <span><mat-icon>theaters</mat-icon></span>
+  <a mat-button routerLinkActive="active" routerLink="/users">
+    <!--chceme buttn s ikonkou a textom -> nie len icon button al eobycajny button-->
+    <mat-icon>person</mat-icon>Users
+  </a>
+  <a mat-button routerLinkActive="active" routerLink="/extended-users">
+    <mat-icon>contact_emergency</mat-icon>Extended users
+  </a>
+  <a mat-button routerLinkActive="active" routerLink="/user/new">
+    <mat-icon>person_add</mat-icon>New user
+  </a>
+  <a mat-button routerLinkActive="active" routerLink="/groups"> <!--zafunguje pravidlo s listom - child s prazdnymi uvodzovkami-->
+    <mat-icon>group</mat-icon> Groups
+  </a>
+  <a mat-button routerLinkActive="active" routerLink="/films"> 
+    <mat-icon>videocam</mat-icon> Films
+  </a>
+  <a mat-button routerLinkActive="active" routerLink="/films/detailed"> 
+    <mat-icon>emergency_recording</mat-icon> Extended Films
+  </a>
+  <a mat-button routerLinkActive="active" routerLink="/chat">
+    <mat-icon>chat</mat-icon>Chat
+  </a>
+  <span class="spacer"></span>
+
+  <span *ngIf="loggedUser; then thenBlock else elseBlock"></span>
+    <ng-template #thenBlock>
+      {{loggedUser}}
+      <button mat-button type="button" (click)="logout()">
+        <!--login ak nie som priglaseny logout ak som -> existuje aj if else -->
+        <mat-icon>logout</mat-icon>Logout
+      </button>
+      <!--tuna je button lebo robime len nejaku funkciu neprepajame sa nikam
+      vo funkcii zavolame router a presmerujeme sa niekam-->
+    </ng-template>
+    <ng-template #elseBlock>
+      <a mat-button routerLinkActive="active" routerLink="/login">
+        <!--login ak nie som priglaseny logout ak som -> existuje aj if else -->
+        <mat-icon>login</mat-icon>Login
+      </a>
+      <a mat-button routerLinkActive="active" routerLink="/register">
+        <mat-icon>person_add</mat-icon>Register
+      </a>
+    </ng-template>
+  
+
+
+</mat-toolbar>

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>{{data.question}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>No</button> <!--ked nechcem navratovu hodnotu priamo v sablone da sa to aj v metode triedy-->
+  <button mat-button [mat-dialog-close]="true" >Yes</button>
+  <!--cdkFocusInitial zname na co sa stlaci ked dame len enter-->
+  <!--na cdk je vybudovany material angular == dvojvrstvovo cdk + material vrstva = cdk = funkcionalita, material je design-->
+</div>

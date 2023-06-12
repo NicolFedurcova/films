@@ -1,0 +1,48 @@
+<form (ngSubmit)="onSubmit()" #formModel="ngForm"> <!--pozor na onsubmit() ZATVORKY-->
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>LOGIN to films</mat-card-title>
+            <mat-card-subtitle>Best place ever  </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+            <!--pomocný výpis ayb sme videli ze co je v chlieviku je aj v premennej auth -->
+            <!-- <div>Auth: {{getAuth()}}</div> chcem aby sa to menilo spolu so zmenou textu v chlievikoch-->
+
+            <!-- <div *ngIf = "notSucessful"> Prihlásenie nebolo úspešné</div> -->
+            <div *ngIf="message">{{message}}</div> <!--zobrazí sa len vtedy ak bude truthy-->
+
+            <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <!-- <input matInput value="{{auth.name}}"> value je uvodna def hodnota chlievku -->
+                <input matInput [(ngModel)]="auth.name" name="username" required minlength="1">
+                <mat-hint>please insert username</mat-hint>
+                <mat-error>userrname must have at least 2 chaarcters</mat-error>
+            </mat-form-field>
+
+            <!-- v HTML SA NEROBI MEDZERA MEDZI ROVNA SA !!!!!!!!!!!§-->
+
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <!-- input type password zobrazuje gulicky-->
+                <!--value je def hodnota chlievku -> alternativa-->
+                <!-- <input matInput [value]="auth.password" [type]="hide ? 'password' : 'text'"> -->
+                <input matInput [(ngModel)]="auth.password" name="pass" [type]="hide?'password':'text'" required minlength="1">
+                <!-- premenna hide do login component ts urcuje ci skryvat ci nie - odchytava sa click-->
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide?'visibility_off':'visibility'}}</mat-icon>
+                </button>
+                <!--BUTTON JE DEFAULTNE PREMENNA TYPU SUBMIT!!!!!!!!!!!!!-->
+            </mat-form-field>
+
+            <!-- chceme tento formular presvedcit aby z chlievikov input hodnoty povytahoval a vlozil do premennej typu Auth-->
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="accent" 
+            [disabled]="formModel.form.invalid">Login</button> <!--from ma vlastnosti valid a invalid = ak je nevalidny nehc je disabled-->
+            <!-- ked kliknem na tlacidlo formular odchadza cez http get na url adresu localhost 4200 -->
+        </mat-card-actions>
+    </mat-card>
+</form>

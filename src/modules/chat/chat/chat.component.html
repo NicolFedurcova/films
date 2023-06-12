@@ -1,0 +1,35 @@
+<!--template driven formular -->
+<form (ngSubmit)="onConnect()" #connectModel = "ngForm">
+<!-- textovy chlievik-->
+    <mat-form-field appearance="fill">
+        <mat-label>Nick</mat-label>
+        <input matInput [(ngModel)]="nick" name="username" required  >
+        <mat-error>nick is requriews</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="accent" 
+                [disabled]="connectModel.form.invalid || connected">Connect</button> <!--ked som uz napojena chcem mat toto disablovane-->
+    <button type="button" mat-raised-button color="accent" 
+                [disabled]="!connected" (click)="onDisconnect">Disconnect</button>
+</form>
+
+<div *ngIf="connected">
+    <form (ngSubmit)="onSend()" #sendModel = "ngForm">
+        <!-- textovy chlievik-->
+            <mat-form-field appearance="fill">
+                <mat-label>Message</mat-label>
+                <input matInput [(ngModel)]="messageToSend" name="msg" required #messageInput> <!--cez view child ho viem najst-->
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="accent" 
+                        [disabled]="sendModel.form.invalid">Send</button>
+    </form>
+
+    <table mat-table matSort [dataSource]="messages"> 
+        <mat-text-column name="name" headerText="Name"></mat-text-column>
+        <mat-text-column name="message" headerText="Message"></mat-text-column>
+    
+        
+        <tr mat-header-row *matHeaderRowDef="['name', 'message']"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: ['name', 'message']"></tr>
+    </table>
+</div>
+<!--ak by sme tu dali mat datasource vedeli by sme to paginovat -->
