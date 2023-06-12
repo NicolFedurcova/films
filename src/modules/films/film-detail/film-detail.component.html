@@ -1,9 +1,4 @@
 
-<mat-form-field>
-    <mat-label>filter</mat-label>
-    <input matInput (keyup)="onFilter($event)">
-</mat-form-field>
-
 <table mat-table matSort [dataSource]="filmsDataSource" multiTemplateDataRows class="mat-elevation-z8">
 
   <mat-text-column name="id" headerText="ID"></mat-text-column>
