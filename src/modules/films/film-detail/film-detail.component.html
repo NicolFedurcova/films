@@ -53,13 +53,15 @@
           <div class="body-detail">
           <ul>
             <li><b>IMDB ID:</b> {{film.imdbID}}</li>
+            <li><b>RÉŽIA:</b> {{film.reziser | directorsToString}}</li> <!--doplnene-->
             <li><b>HODNOTENIE:</b> {{ifNotValue(getDetail(film.imdbID)?.imdbRating)}} (imbd) </li>
             <li><b>TRVANIE:</b> {{ifNotValue(getDetail(film.imdbID)?.Runtime)}} </li>
             <li><b>ŽÁNRE:</b> {{ifNotValue(getDetail(film.imdbID)?.Genre)}} </li>
-            <li><b>REŽISÉR:</b> {{ifNotValue(getDetail(film.imdbID)?.Director)}} </li>
+           <!-- <li><b>REŽISÉR:</b> {{ifNotValue(getDetail(film.imdbID)?.Director)}} </li>-->
             <li><b>HERCI:</b> {{ifNotValue(getDetail(film.imdbID)?.Actors)}} </li>
             <li><b>BOXOFFICE:</b> {{ifNotValue(getDetail(film.imdbID)?.BoxOffice)}} </li>
             <li><b>DEJ:</b> {{ifNotValue(getDetail(film.imdbID)?.Plot)}} <a href={{createLink(ifNotValue(getDetail(film.imdbID)?.Plot))}} target=”_blank”>preklad</a></li>
+            <li><b>POSTAVY:</b> {{film.postava | characterToString}}</li> <!--doplnene-->
           </ul>
           </div>
         </div>

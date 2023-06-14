@@ -31,3 +31,7 @@ table {
   .image-detail{
     float: left;
   }
+
+  img{
+    max-height: 350px;
+  }
