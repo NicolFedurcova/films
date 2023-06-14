@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Person } from 'src/entities/person';
 import { Postava } from 'src/entities/postava';
 
 @Pipe({

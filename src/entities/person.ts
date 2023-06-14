@@ -14,7 +14,6 @@ export class Person {
   }
 
   static toString(person:Person):string{
-    //console.log(this.ifNull(this.krstneMeno)+ " "+this.ifNull(this.stredneMeno) + " " + this.ifNull(this.priezvisko));
     return this.ifNull(person.krstneMeno)+ " "+this.ifNull(person.stredneMeno) + " " + this.ifNull(person.priezvisko);
   }
   
